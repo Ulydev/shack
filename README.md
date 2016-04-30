@@ -1,61 +1,100 @@
-lue
+shack
 ==============
 
-lue is a LÖVE library that allows you to display hue color effects in your game.
+shack is a LÖVE library that lets you easily add screen effects such as shake and rotation.
 
-See [HSL](https://en.wikipedia.org/wiki/HSL_and_HSV)
+![demo][demo]
+
+Easy integration with [push](https://github.com/Ulydev/push)
 
 Setup
 ----------------
 
+Require the library
 ```lua
-local lue = require "lue" --require the library
+local screen = require "shack"
+```
+
+Set game dimensions
+```lua
+screen:setDimensions(width, height) --love.graphics.getDimensions() by default
+```
+
+For [push](https://github.com/Ulydev/push) users:
+```lua
+screen:setDimensions(push:getDimensions())
 ```
 
 Usage
 ----------------
 
-Update hue
+Update shack
 ```lua
 function love.update(dt)
-  lue:update(dt)
+  screen:update(dt)
 end
 ```
 
-Get hue color
+Apply effects
 ```lua
 function love.draw()
-  lue:getColor(50, 100)
+  screen:apply()
+  
+  --draw after applying
 end
 ```
 
-Methods
+Shake screen
+```lua
+screen:setShake(20)
+```
+
+Methods and aliases
 ----------------
 
-Update hue
+Set dimensions
 ```lua
-lue:update(dt)
+screen:setDimensions(width, height)
 ```
 
-Get hue color
+Update shack
 ```lua
-lue:getColor(saturation, lightness, opacity)
-```
-All values range from **0** to **255**.
-
-Set/get the global color intensity of lue - useful for spontaneous color effects such as explosions
-```lua
-lue:setIntensity(intensity)
-lue:getIntensity()
+screen:update(dt)
 ```
 
-Set/get hue speed
+Apply shack
 ```lua
-lem:setSpeed(speed)
-lem:getSpeed()
+screen:apply()
 ```
 
-Get the current hue value (0-255)
+Set/get shake intensity
 ```lua
-lue:getHue()
+screen:setShake(shake)
+//-> screen:shake
+
+screen:getShake()
 ```
+
+Set/get rotation intensity
+```lua
+screen:setRotation(rotation)
+//-> screen:rotate
+
+screen:getRotation()
+```
+
+Set/get shake target
+```lua
+screen:setShakeTarget(shakeTarget) --defaults to 0
+
+screen:getShakeTarget()
+```
+
+Set/get rotation target
+```lua
+screen:setRotationTarget(rotationTarget) --defaults to 0
+
+screen:getRotationTarget()
+```
+
+[demo]: https://media.giphy.com/media/l0K4hgmCL9PLzYYTe/giphy.gif
