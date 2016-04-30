@@ -73,12 +73,20 @@ screen:setShake(shake)
 screen:getShake()
 ```
 
-Set/get rotation intensity
+Set/get rotation
 ```lua
 screen:setRotation(rotation)
 //-> screen:rotate
 
 screen:getRotation()
+```
+
+Set/get scale intensity
+```lua
+screen:setScale(x, y)
+//-> screen:zoom
+
+screen:getScale()
 ```
 
 Set/get shear intensity
@@ -101,6 +109,13 @@ Set/get rotation target
 screen:setRotationTarget(rotationTarget) --defaults to 0
 
 screen:getRotationTarget()
+```
+
+Set/get scale target
+```lua
+screen:setScaleTarget(x, y) --defaults to 1, 1
+
+screen:getScaleTarget()
 ```
 
 Set/get shear target

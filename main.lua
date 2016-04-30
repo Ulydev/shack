@@ -27,4 +27,6 @@ function love.keypressed(key)
   screen:setShake(20)
   screen:setRotation(.1)
   
+  screen:zoom(1.05)
+  
 end
