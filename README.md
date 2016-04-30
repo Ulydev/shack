@@ -5,8 +5,6 @@ shack is a LÖVE library that lets you easily add screen effects such as shake a
 
 ![demo][demo]
 
-Easy integration with [push](https://github.com/Ulydev/push)
-
 Setup
 ----------------
 
