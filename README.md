@@ -81,6 +81,14 @@ screen:setRotation(rotation)
 screen:getRotation()
 ```
 
+Set/get shear intensity
+```lua
+screen:setShear(x, y)
+//-> screen:tilt
+
+screen:getShear()
+```
+
 Set/get shake target
 ```lua
 screen:setShakeTarget(shakeTarget) --defaults to 0
@@ -93,6 +101,13 @@ Set/get rotation target
 screen:setRotationTarget(rotationTarget) --defaults to 0
 
 screen:getRotationTarget()
+```
+
+Set/get shear target
+```lua
+screen:setShearTarget(x, y) --defaults to 0, 0
+
+screen:getShearTarget()
 ```
 
 [demo]: https://media.giphy.com/media/l0K4hgmCL9PLzYYTe/giphy.gif

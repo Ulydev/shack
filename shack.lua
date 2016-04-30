@@ -12,6 +12,9 @@ local shack = {
   rotation = 0,
   rotationTarget = 0,
   
+  shear = { x = 0, y = 0 },
+  shearTarget = { x = 0, y = 0 },
+  
   width = love.graphics.getWidth(),
   height = love.graphics.getHeight()
 }
@@ -38,6 +41,9 @@ function shack:update(dt)
   
   self.shaking = lerp(self.shaking, self.shakingTarget, 7*dt)
   self.rotation = lerp(self.rotation, self.rotationTarget, 7*dt)
+  
+  self.shear.x = lerp(self.shear.x, self.shearTarget.x, 7*dt)
+  self.shear.y = lerp(self.shear.y, self.shearTarget.y, 7*dt)
 
 end
 
@@ -48,6 +54,8 @@ function shack:apply()
   love.graphics.translate(-self.width*.5, -self.height*.5)
   
   love.graphics.translate((math.random()-.5)*self.shaking, (math.random()-.5)*self.shaking)
+  
+  love.graphics.shear(self.shear.x*.01, self.shear.y*.01)
   
   return self
 end
@@ -64,6 +72,11 @@ function shack:setRotation(rotation)
   return self
 end
 
+function shack:setShear(x, y)
+  self.shear = { x = x or 0, y = y or 0 }
+  return self
+end
+
 function shack:setShakeTarget(shaking)
   self.shakingTarget = shaking or 0
   return self
@@ -71,6 +84,11 @@ end
 
 function shack:setRotationTarget(rotation)
   self.rotationTarget = rotation or 0
+  return self
+end
+
+function shack:setShearTarget(x, y)
+  self.shearTarget = { x = x or 0, y = y or 0 }
   return self
 end
 
@@ -82,10 +100,14 @@ function shack:getShakeTarget() return self.shakingTarget end
 function shack:getRotation() return self.rotation end
 function shack:getRotationTarget() return self.rotationTarget end
 
+function shack:getShear() return self.shear.x, self.shear.y end
+function shack:getShearTarget() return self.shearTarget.x, self.shearTarget.y end
+
 --[[ Aliases ]]--
 
 function shack:shake(...) return self:setShake(...) end
 function shack:rotate(...) return self:setRotation(...) end
+function shack:tilt(...) return self:setShear(...) end
 
 --[[ End ]]--
 
